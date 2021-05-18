@@ -1,0 +1,41 @@
+<%= form_with(model: @blog, local: true, url: url_confirm, method: method_confirm) do |form| %>
+<% if @blog.errors.any? %>
+<div id="error_explanation">
+  <h2>Ooops!!<%= @blog.errors.count %>件のエラーがありまっせ～！！</h2>
+  <ul>
+    <% @blog.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="blog_title">
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+</div>
+<div class="blog_title">
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+</div>
+<div class="field">
+  <% if @blog.image? %>
+  <div class="thumbnail">
+    <%= image_tag @blog.image.url %>
+  </div>
+  <% end %><br>
+  <%= form.label :image %><br>
+  <%= form.file_field :image %>
+  <%= form.hidden_field :image_cache %>
+</div>
+<div class="field">
+  <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+  <% if @blog.persisted? && @blog.image? %>
+  <label>
+    <%= form.check_box :remove_image %>
+    画像を削除
+  </label>
+  <% end %>
+</div>
+<%= form.submit %>
+<% end %>
+<%= link_to "ブログ一覧画面にもどる", blogs_path, class: "btn btn-outline-primary"  %>

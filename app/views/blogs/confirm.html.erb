@@ -1,2 +1,12 @@
-<h1>Blogs#confirm</h1>
-<p>Find me in app/views/blogs/confirm.html.erb</p>
+<h3>以下の内容で、送信する。</h3>
+<%= form_with(model: @blog, url: edit_confirm, method: method_confirm, local: true) do |form| %>
+<%= form.hidden_field :title %>
+<%= form.hidden_field :content %>
+<%= form.hidden_field :image_cache %>
+<%= form.hidden_field :user_id, value: current_user.id %>
+<p>タイトル:<%= @blog.title %></p>
+<p>本文:<%= @blog.content %></p>
+<p>画像:<%= image_tag @blog.image.url if @blog.image? %></p>
+<%= form.submit  "登録する",  class: "btn btn-outline-primary" %>
+<%= form.submit "戻る", name: 'back', class: "btn btn-outline-primary"  %>
+<% end %>

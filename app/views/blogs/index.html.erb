@@ -1,2 +1,20 @@
-<h1>Blogs#index</h1>
-<p>Find me in app/views/blogs/index.html.erb</p>
+<h1>ブログ一覧</h1>
+<table>
+  <tr>
+    <th>タイトル</th>
+    <th>内容</th>
+  </tr>
+  <% @blogs.each do |blog| %>
+  <tr>
+    <td><%= blog.title %></td>
+    <td><%= blog.content %></td>
+    <td><%= image_tag blog.image.url if blog.image? %></td>
+    <td><%= blog.user.name %></td>
+    <td><%= link_to '詳細を確認する', blog_path(blog.id), class: "btn btn-outline-primary" %></td>
+    <td><%= link_to "ブログを編集する", edit_blog_path(blog.id), class: "btn btn-outline-primary"  %></td>
+    <td><%= link_to 'ブログを削除する', blog_path(blog.id), method: :delete ,data: { confirm: 'マジで！？削除していいの？？本当に？？' }, class: "btn btn-outline-primary"  %></td>
+  </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to '新しくブログを投稿する', new_blog_path, class: "btn btn-outline-primary"  %>

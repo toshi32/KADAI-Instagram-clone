@@ -1,2 +1,21 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<h1>ブログ詳細画面</h1>
+<p>ユーザー名: <%= @blog.user.name %></p>
+<p>タイトル: <%= @blog.title %></p>
+<p>内容: <%= @blog.content %></p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @blog.image.url %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <% if @blog.image? %>
+<div class="thumbnail">
+  <%= image_tag @blog.image.url %>
+</div>
+<% end %>
+</p>
+
+<%= link_to '編集する', edit_blog_path(@blog), class: "btn btn-outline-primary"  %> |
+<%= link_to '戻る', blogs_path, class: "btn btn-outline-primary"  %>
