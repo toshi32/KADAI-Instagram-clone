@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+body {
+  background: linear-gradient(
+    60deg,
+    rgba(238, 31, 152, 0.384),
+    rgba(214, 21, 134, 0.74)
+  );
+  color: #333;
+  margin: 33px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+img {
+  width: 300px;
+  height: 200px;
+}
+
+header {
+  background: linear-gradient(
+    60deg,
+    rgba(238, 31, 152, 0.384),
+    rgba(214, 21, 134, 0.74)
+  );
+}
+
+footer {
+  background: linear-gradient(
+    60deg,
+    rgba(98, 106, 223, 0.4),
+    rgba(25, 43, 209, 0.6)
+  );
+}
