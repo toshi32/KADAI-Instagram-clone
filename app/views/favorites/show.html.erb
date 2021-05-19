@@ -6,16 +6,17 @@
       <td><%= favorite.user.name %></td>
     </tr>
     <tr>
-      <td><%= favorite.picture.content %></td>
+      <td><%= favorite.blog.content %></td>
     </tr>
     <tr>
-      <td><%= image_tag(favorite.picture.image.url) %></td>
+      <td><%= image_tag (favorite.blog.image) if favorite.blog.image? %></td>
     </tr>
   </tbody>
-  <tfooter>
+  <footer>
     <tr>
       <td><%= link_to 'お気に入り解除する', favorite_path(id: favorite.id), method: :delete, class: 'btn btn-danger' %></td>
+      <td><%= link_to 'Back To profile', user_path(current_user.id), class: 'btn btn-warning' %></td>
     </tr>
-  </tfooter>
+  </footer>
 <% end %>
 </table>
