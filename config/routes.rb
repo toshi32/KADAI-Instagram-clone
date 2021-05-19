@@ -10,4 +10,5 @@ Rails.application.routes.draw do
       patch :confirm
     end
   end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

@@ -12,6 +12,7 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.build(blog_params)
     if @blog.save
+      ContactMailer.contact_mail(@blog).deliver  ##追記
       redirect_to blogs_path, notice: "Yeah！！ブログを作成したYO！！"
     else
       render :new
