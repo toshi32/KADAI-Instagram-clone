@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  # before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @blogs = Blog.all
@@ -28,6 +29,7 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    edirect_to pictures_path, notice: "不正操作を記録しました。" unless current_user.id == @picture.user.id
   end
 
   def update
@@ -54,7 +56,6 @@ class BlogsController < ApplicationController
     else
       render :new if @blog.invalid?
     end
-
   end
 
   private
@@ -65,4 +66,13 @@ class BlogsController < ApplicationController
   def set_blog
     @blog = Blog.find(params[:id])
   end
+
+  # def ensure_correct_user
+  #   @blog = Blog.find(params[:id])
+  #   if @blog.user_id != current_user.id
+  #     flash[:notice] = "No authority"
+  #     redirect_to blogs_url
+  #   end
+  # end
+
 end

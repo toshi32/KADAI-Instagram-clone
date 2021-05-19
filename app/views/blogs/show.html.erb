@@ -19,6 +19,7 @@
     <%= link_to 'お気に入りする', favorites_path(blog_id: @blog.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
-
-<%= link_to '編集する', edit_blog_path(@blog), class: "btn btn-outline-primary"  %> |
+  <% if @blog.user.id == current_user.id %>
+    <%= link_to '編集する', edit_blog_path(@blog), class: "btn btn-outline-primary"  %> |
+  <% end %>
 <%= link_to '戻る', blogs_path, class: "btn btn-outline-primary"  %>
