@@ -22,6 +22,7 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.find_by(id: params[:id])
     @user = User.find_by(id: @blog.user_id)
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   def edit
