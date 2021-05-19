@@ -27,6 +27,8 @@ class BlogsController < ApplicationController
   end
 
   def update
+    @blog.remove_image!
+    @blog.save
     if @blog.update(blog_params)
       redirect_to blogs_path, notice: "Hey！！ブログを編集したYO！！"
     else

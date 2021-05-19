@@ -5,11 +5,6 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @blog.image.url %>
-</p>
-
-<p>
-  <strong>Image:</strong>
   <% if @blog.image? %>
 <div class="thumbnail">
   <%= image_tag @blog.image.url %>
