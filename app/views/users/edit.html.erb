@@ -1,0 +1,32 @@
+<%= form_with(model: @user, local: true, url: user_url_confirm, method: user_method_confirm) do |form| %>
+
+<div class="blog_title">
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+</div>
+<div class="blog_title">
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+</div>
+<div class="field">
+  <% if @user.image? %>
+  <div class="thumbnail">
+    <%= image_tag @user.image.url %>
+  </div>
+  <% end %><br>
+  <%= form.label :image %><br>
+  <%= form.file_field :image %>
+  <%= form.hidden_field :image_cache %>
+</div>
+<div class="field">
+  <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+  <% if @user.persisted? && @user.image? %>
+  <label>
+    <%= form.check_box :remove_image %>
+    画像を削除
+  </label>
+  <% end %>
+</div>
+<%= form.submit %>
+<% end %>
+<%= link_to "ブログ一覧画面にもどる", users_path, class: "btn btn-outline-primary"  %>
