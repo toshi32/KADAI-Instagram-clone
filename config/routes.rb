@@ -11,9 +11,6 @@ Rails.application.routes.draw do
     end
   end
   resources :users do
-    # collection do
-    #   post :confirm
-    # end
     member do
       patch :confirm
     end

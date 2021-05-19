@@ -34,13 +34,6 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    @user = User.find(params[:id])
-      unless @user.valid?
-      render :edit
-      return
-      else
-        redirect_to :update
-      end
     #@user = User.new(user_params)
     #@user = User.find(params[:id])
     #@user.id = params[:id]
