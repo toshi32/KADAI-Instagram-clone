@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:edit, :show, :update]
   skip_before_action :login_required, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
+
+  def index
+    @user = User.all
+  end
 
   def new
     @user = User.new
@@ -16,8 +20,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id: params[:id])
-    @blog = Blog.find_by(id: @user.blog_id)
   end
 
   def edit
@@ -27,22 +29,10 @@ class UsersController < ApplicationController
     @user.remove_image!
     @user.save
     if @user.update(user_params)
-      redirect_to users_path, notice: "Hey！！プロフィールを編集したYO！！"
+      redirect_to user_path, notice: "Hey！！プロフィールを編集したYO！！"
     else
       render :edit
     end
-  end
-
-  def confirm
-    #@user = User.new(user_params)
-    #@user = User.find(params[:id])
-    #@user.id = params[:id]
-    #@user.blog_id = current_blog.id
-    # if @user.id?
-    #   render :edit and return if @user.invalid?
-    # else
-    #   render :new if @user.invalid?
-    # end
   end
 
   private

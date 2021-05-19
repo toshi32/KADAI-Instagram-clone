@@ -1,2 +1,4 @@
 <h1><%= @user.name %>のページ</h1>
 <p>メールアドレス: <%= @user.email %></p>
+<p>プロフィール画像：
+<br><%= image_tag @user.image.url if @user.image? %></p>
