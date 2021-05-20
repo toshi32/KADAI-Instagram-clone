@@ -29,7 +29,6 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    edirect_to pictures_path, notice: "不正操作を記録しました。" unless current_user.id == @picture.user.id
   end
 
   def update
